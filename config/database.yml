@@ -1,0 +1,47 @@
+---
+# This is a sample database file for the DataMapper ORM
+development: &defaults
+  # These are the settings for repository :default
+  adapter:  mysql
+  database: test
+  username: test
+  password: test
+  host: viewpoint
+ 
+  # Add more repositories
+  # repositories:
+  #   repo1:
+  #     adapter:  sqlite3
+  #     database: sample_1_development.db
+  #   repo2:
+  #     ...
+
+mri:
+  adapter: mysql
+  user: test
+  database: mysql://test:test@localhost/test
+  password: test
+  host: localhost
+
+pgj:
+  adapter: postgres
+  database: test:test@localhost/test
+ 
+test:
+  <<:       *defaults
+  database: sample_test.db
+ 
+  # repositories:
+  #   repo1:
+  #     database: sample_1_test.db
+ 
+production:
+  <<:       *defaults
+  database: production.db
+ 
+  # repositories:
+  #   repo1:
+  #     database: sample_production.db
+ 
+rake:
+  <<: *defaults
