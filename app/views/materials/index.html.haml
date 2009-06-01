@@ -1,0 +1,16 @@
+%h1 lista
+
+%table
+  %th nazwa
+  %th typ
+  %th stan
+  - for material in @materials
+    %tr
+      %td= link_to material.nazwa, resource(material)
+      %td= link_to material.typ, resource(material)
+      %td= link_to "#{material.stan}/#{material.book_in_dates.count}", resource(material)
+      %td= link_to 'Edytuj', url(:edit_material,  material)
+
+= link_to 'Nowy materiał', url(:new_material)
+|
+= link_to 'Statystyki', url(:stats_materials)

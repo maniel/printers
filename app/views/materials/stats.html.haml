@@ -1,0 +1,28 @@
+%h1 STATYSTYKI!:D
+
+-require_css 'ui.all'
+-require_js 'jquery'
+-require_js 'jquery-ui-personalized'
+-require_js 'data'
+-if message["error"]
+  %p= message["error"]
+
+=form(:action => resource(:materials,:stats)) do
+  %p
+    OD
+    =text_field :poczatek, :class => :data, :value => params["poczatek"]?params["poczatek"]:"01-01-2009"
+    DO
+    =text_field :koniec, :class => :data, :value => params["koniec"]?params["koniec"]:DateTime.now.strftime("%d-%m-%Y")
+    =submit :ok
+    =check_box :name => 'printers[]', :value => 1
+    =check_box :name => 'printers[]', :value => 2
+%table
+  -@ary.each do |m|
+    %tr
+      %td= link_to m[0].nazwa, resource(m[0])
+      %td= link_to m[0].typ, resource(m[0])
+      %td= link_to m[1], resource(m[0])
+
+= link_to 'Nowy materiał', url(:new_material)
+|
+= link_to 'Wstecz', url(:materials)

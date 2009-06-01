@@ -1,0 +1,10 @@
+%h1 Materials controller, new action
+
+= error_messages_for @material
+
+= form_for(@material, :action => url(:materials) ) do
+  %p= text_field :nazwa, :label => "Nazwa"
+  %p= select :typ, :collection => %w{tusz toner glowica beben inny}, :label => "Typ"
+  %p= submit "Stwórz"
+
+= link_to 'Wstecz', url(:materials)

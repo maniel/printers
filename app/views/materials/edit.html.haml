@@ -1,0 +1,13 @@
+%h1
+  Materials controller, edit action
+
+= error_messages_for @material
+
+= form_for(@material, :action => url(:material, @material)) do
+  %p= text_field :nazwa, :label => "Nazwa"
+  %p= select :typ, :collection => %w{tusz toner glowica inny}, :label => "Typ"
+  %p= submit "Update"
+
+= link_to 'Pokaż', url(:material, @material)
+|
+= link_to 'Wstecz', url(:materials)

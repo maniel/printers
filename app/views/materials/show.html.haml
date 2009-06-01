@@ -1,0 +1,42 @@
+%h1
+  Materials controller, show action
+-require_css 'ui.all'
+-require_js 'jquery'
+-require_js 'jquery-ui-personalized'
+-require_css 'jquery.alerts'
+-require_js 'jquery.alerts'
+-require_js 'alert'
+%p
+  = message[:error]
+%p
+  %dt Nazwa:
+  %dd= @material.nazwa
+  %dt Typ:
+  %dd= @material.typ
+  %dt Stan:
+  %dd= @material.stan
+ 
+  Kompatybilny z drukarkami:
+  %table
+    %th nazwa
+    %th producent
+    -@material.printers.each do |drukarka|
+      %tr
+        %td= link_to drukarka.nazwa, resource(drukarka)
+        %td= link_to drukarka.producent, resource(drukarka)
+  
+= form(:action => resource(@material, :zmien_stan)) do
+  %p
+    = submit :dodaj, :name => "jak"
+    = text_field :ile
+    = submit :zdejm, :name => "jak"
+%p
+  W razie niepotrzebnego zdjęcia ze stanu kliknij
+  =link_to 'tutaj', resource(@material, :cofnij), :class => 'potwierdzenie'
+  aby je cofnąć, miast dodawać ponownie do stanu;-)
+
+= link_to 'Edytuj',  url(:edit_material,  @material)
+|
+= link_to 'Wróć', url(:materials)
+|
+= link_to 'Usuń', url(:delete_material, @material), :class => 'potwierdzenie'
